@@ -11,16 +11,16 @@ async function initApp() {
   displayTeachersGrid(teachers);
 }
 
-
 async function getTeachers() {
   // Fetch the data from the API
-  const response = await fetch("https://raw.githubusercontent.com/cederdorff/race/master/data/users.json")
+  const response = await fetch("https://raw.githubusercontent.com/cederdorff/race/master/data/users.json");
   const data = await response.json();
   return data;
 }
 
 function displayTeachers(teachers) {
   const teachersList = document.querySelector("#teachers-list");
+  teachersList.innerHTML = ""; // Clear the list before populating
 
   for (const teacher of teachers) {
     teachersList.insertAdjacentHTML(
@@ -32,24 +32,23 @@ function displayTeachers(teachers) {
       `
     );
   }
-
 }
-
 
 function displayTeachersGrid(teachers) {
   const teachersGrid = document.querySelector("#teachers-grid");
+  teachersGrid.innerHTML = ""; // Clear the grid before populating
 
-
-for (const teacher of teachers) {
-  teachersGrid.insertAdjacentHTML(
-    "beforeend",
-    /*html*/ `
-    <article class="grid-item">
-      <img src="${teacher.image}" alt="${teacher.name}" />
-      <h2>${teacher.name}</h2>
-      <p>${teacher.title}</p>
-    </article>
-  `
-  );
-}
+  for (const teacher of teachers) {
+    teachersGrid.insertAdjacentHTML(
+      "beforeend",
+      /*html*/ `
+      <article class="grid-item">
+        <img src="${teacher.image}" alt="${teacher.name}" />
+        <h2>${teacher.name}</h2>
+        <p>${teacher.title}</p>
+        <p>${teacher.mail}</p>
+      </article>
+    `
+    );
+  }
 }
